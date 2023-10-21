@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8063",
     "lint": "next lint",
     "seed": "tsx prisma/seed.ts",
     "test": "tsx src/services/test.ts"
