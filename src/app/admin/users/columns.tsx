@@ -3,14 +3,29 @@
 import { Button } from "@/components/ui/button"
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, Edit, Trash2 } from "lucide-react"
-import Link from "next/link"
 import { DataUser, create, eliminate, update } from "./(crud)/actions"
 import { UserDialog } from "./(crud)/user-dialog"
 import { DeleteDialog } from "./(crud)/delete-dialog"
 import { format } from "date-fns"
 import { es } from "date-fns/locale"
+import Image from "next/image"
 
 export const columns: ColumnDef<DataUser>[] = [
+  {
+    accessorKey: "imagen",
+    header: ({ column }) => {
+        return (
+          <div></div>
+    )
+    },
+    cell: ({ row }) => {
+      const data = row.original
+      if (!data.imagen) return <div></div>
+      return (
+        <Image src={data.imagen} width={50} height={50} alt="User image" className="rounded-full"/>
+      )
+    },
+  },
   {
     accessorKey: "nombre",
     header: ({ column }) => {
