@@ -1,5 +1,6 @@
 "use client"
 
+import { LoadingSpinnerChico } from "@/components/loadingSpinner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Ban, Check, CheckCircle2 } from "lucide-react";
@@ -15,7 +16,7 @@ export default function HandleForm({ userId, setHandleAction, isHandleAvailableA
 
   const [handle, setHandle] = useState("")
   const [handleValid, setHandleValid] = useState(false)
-
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function checkAvailability(handle: string) {
@@ -30,16 +31,29 @@ export default function HandleForm({ userId, setHandleAction, isHandleAvailableA
     checkAvailability(handle)
   }, [handle, isHandleAvailableAction])
   
+  function handleSubmit() {
+    setLoading(true)
+    
+    const formData= new FormData()
+    formData.append("handle", handle)
+    async function setHandle() {
+        await new Promise(resolve => setTimeout(resolve, 100))
+        setHandleAction(formData)
+        setLoading(false)
+    }
+    setHandle()
+}
+
 
   return (
     <div className="mt-10 flex flex-col items-center">
       <p>Por favor elige un identificador para armar tu URL</p>
 
       <div className="mt-5 p-5 border rounded-md">
-        <form action={setHandleAction} className="flex items-center gap-1">        
+        <form action={handleSubmit} className="flex items-center gap-1">        
           <label>https://tinta.link/</label>
           <Input type="text" name="handle" autoFocus className="pl-1" value={handle} onChange={(e) => setHandle(e.target.value)} />
-          <Button className="w-36 ml-1" disabled={!handleValid}>Crear</Button>
+          <Button className="w-36 ml-1" disabled={!handleValid}>{loading ? <LoadingSpinnerChico /> : "Crear"}</Button>
         </form>
 
         <div className="mt-4 flex justify-center font-bold">
