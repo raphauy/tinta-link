@@ -1,13 +1,13 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { getReactIcon } from "@/lib/icons"
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, Edit, Trash2, Wine } from "lucide-react"
+import { ArrowUpDown, Edit, Trash2 } from "lucide-react"
 import React from "react"
 import { DataSocialNetwork, create, eliminate, update } from "./(crud)/actions"
 import { DeleteDialog } from "./(crud)/delete-dialog"
 import { SocialNetworkDialog } from "./(crud)/social-dialog"
-import * as ReactIcons from 'react-icons/bs'
 
 
 export const columns: ColumnDef<DataSocialNetwork>[] = [
@@ -36,11 +36,8 @@ export const columns: ColumnDef<DataSocialNetwork>[] = [
   },
   cell: ({ row }) => {
     const data= row.original
-    // @ts-ignore
-    const socialIcon= ReactIcons[data.icon]
-
-    if (data.icon === "Wine")
-      return <Wine className="w-7 h-7" color={data.color}/>
+    const socialIcon= getReactIcon(data.icon)
+    if (!socialIcon) return <div>Icon not found</div>
 
     return (
       <div>

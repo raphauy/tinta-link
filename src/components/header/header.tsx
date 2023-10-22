@@ -13,9 +13,7 @@ export default async function Header({ children }: Props) {
 
     const headersList = headers();
     const url = headersList.get("x-url") || "";
-    const path= "/" + url.split("/")[3]
-    console.log(path);
-    
+    const path= "/" + url.split("/")[3] 
 
     if (
         !(path === "/") && 

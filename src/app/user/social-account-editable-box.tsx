@@ -1,16 +1,15 @@
 "use client"
 
+import { Button } from '@/components/ui/button';
+import { getReactIcon } from '@/lib/icons';
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import * as ReactIcons from 'react-icons/bs'
+import { Grip, Pencil, Trash2 } from 'lucide-react';
 import Link from "next/link";
-import React, { useState } from "react";
-import { Button } from '@/components/ui/button';
-import { Grip, Pencil, Trash2, Wine } from 'lucide-react';
+import React from "react";
+import { DeleteDialog } from './_delete/delete-dialog';
 import { SocialAccountDialog } from './_update/social-account-dialog';
 import { deleteSocialAccountAction, updateSocialAccountAction } from './social-account-actions';
-import { DeleteDialog } from './_delete/delete-dialog';
-import { getXIcon } from '@/lib/icons';
 
 interface Props {
     id: string
@@ -27,8 +26,8 @@ export default function SocialAccountEditableBox({ id, title, href, icon, color 
         transition,
     }
 
-    // @ts-ignore
-    const socialIcon= ReactIcons[icon]
+    const socialIcon= getReactIcon(icon)
+    if (!socialIcon) return <div>Icon not found</div>
 
     const updateTrigger= (<Button variant="ghost" className='p-1'><Pencil className="w-5 h-5" /></Button>)
     const deleteTrigger= (<Button variant="ghost" className='p-1'><Trash2 className="w-5 h-5" /></Button>)
@@ -41,13 +40,7 @@ export default function SocialAccountEditableBox({ id, title, href, icon, color 
                 className="flex items-center p-1 w-full rounded-md hover:scale-105 bg-slate-50 transition-all border shadow-md max-w-3xl">
                 <div className="flex text-center w-full">
                     <div>
-                        {
-                            icon === "BsTwitter" ?
-                                getXIcon() :
-                            icon === "Wine" ?
-                                <Wine className="w-7 h-7" color={color}/> :
-                                React.createElement(socialIcon, { className: `w-7 h-7`, color})
-                        }
+                        {React.createElement(socialIcon, { className: `w-7 h-7`, color})}
                     </div>
                     <div className="flex justify-center items-center font-semibold w-full text-gray-700 -ml-10">
                         {title}

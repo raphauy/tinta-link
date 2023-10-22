@@ -1,26 +1,24 @@
 "use client"
 
-import { Input } from "@/components/ui/input"
-import { DataSocialNetwork } from "../admin/socialnetworks/(crud)/actions"
-import { Button } from "@/components/ui/button"
-import * as ReactIcons from 'react-icons/bs'
-import React, { useState } from "react"
-import { getXIcon } from "@/lib/icons"
 import { LoadingSpinnerChico } from "@/components/loadingSpinner"
-import { Wine } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { getReactIcon } from "@/lib/icons"
+import React, { useState } from "react"
+import { DataSocialNetwork } from "../admin/socialnetworks/(crud)/actions"
 
 interface Props {
     userId: string
     socialNetwork: DataSocialNetwork
+    autofocus?: boolean
     addSocialAccountAction: (data: FormData) => Promise<boolean>
 }
 
-export default function SocialNetworkBox({ userId, socialNetwork, addSocialAccountAction }: Props) {
+export default function SocialNetworkBox({ userId, socialNetwork, autofocus, addSocialAccountAction }: Props) {
 
     const [nick, setNick] = useState("")
     const [loading, setLoading] = useState(false)
-    // @ts-ignore
-    const socialIcon= ReactIcons[socialNetwork.icon]
+    const socialIcon= getReactIcon(socialNetwork.icon)
     const hrefTemplate= socialNetwork.hrefTemplate
     const href= hrefTemplate.substring(0, hrefTemplate.indexOf("{nick}"))
 
@@ -44,17 +42,11 @@ export default function SocialNetworkBox({ userId, socialNetwork, addSocialAccou
             <form action={handleSubmit} className="flex items-center gap-1">
                 <div>
 
-                {
-                    socialNetwork.icon === "BsTwitter" ?
-                        getXIcon("1.8em") :
-                    socialNetwork.icon === "Wine" ?
-                        <Wine className="w-8 h-8" color={socialNetwork.color}/> :
-                        React.createElement(socialIcon, { size: "25", color: socialNetwork.color})
-                }
+                    {React.createElement(socialIcon, { className: `w-7 h-7`, color: socialNetwork.color})}
                 </div>
 
                 <label className="ml-2 text-xs sm:text-base">{href}</label>
-                <Input type="text" name="nick" value={nick} autoFocus className="pl-1 bg-white" onChange={(e) => setNick(e.target.value)}/>
+                <Input type="text" name="nick" value={nick} autoFocus={autofocus} className="pl-1 bg-white" onChange={(e) => setNick(e.target.value)}/>
                 <Button className="ml-1 p-2" disabled={nick === ""}>
                     {loading ? <LoadingSpinnerChico /> : "Agregar"}
                 </Button>

@@ -1,12 +1,12 @@
 "use client"
 
-import * as ReactIcons from 'react-icons/bs'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { User } from "@prisma/client"
 import React, { useState } from "react"
 import { SocialAccountForm, SocialAccountFormValues } from "./social-account-form"
 import { updateSocialAccountAction } from "../social-account-actions"
 import { Wine } from 'lucide-react'
+import { getReactIcon } from "@/lib/icons"
 
 interface Props{
   id: string
@@ -20,8 +20,7 @@ interface Props{
 export function SocialAccountDialog({ id, title, href, icon, trigger, update }: Props) {
   const [open, setOpen] = useState(false);
 
-  // @ts-ignore
-  const socialIcon= ReactIcons[icon]
+  const socialIcon= getReactIcon(icon)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

@@ -57,8 +57,8 @@ export default async function UserPage() {
 
             <div className="w-full">
                 {
-                    socialNetworks.map((socialNetwork) => (
-                        <SocialNetworkBox key={socialNetwork.id} userId={user.id} socialNetwork={socialNetwork} addSocialAccountAction={addSocialAccountAction} />
+                    socialNetworks.map((socialNetwork, index) => (
+                        <SocialNetworkBox key={socialNetwork.id} userId={user.id} socialNetwork={socialNetwork} addSocialAccountAction={addSocialAccountAction} autofocus={index === 0} />
                     ))                    
                 }
                 {
