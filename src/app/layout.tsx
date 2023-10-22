@@ -13,6 +13,7 @@ import { fontSans } from '@/lib/fonts'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { headers } from 'next/headers'
+import Image from 'next/image'
 
 
 
@@ -69,9 +70,10 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                       <Button className='p-1 font-bold text-base' variant="link">rapha.uy</Button>
                     </Link>
                   </> :
-                  <Link href='https://tinta.wine' target='_blank'>
-                    <Button className='p-1 font-bold text-base' variant="link">tinta.wine</Button>
-                  </Link>
+                    <Link href="https://tinta.wine" className='mb-8'>
+                      <Image src="/logo_tinta.png" width={80} height={80} alt="Tinta logo" className="pb-[3px]" />
+                    </Link>
+                
               }
                   </div> 
               </div>            
