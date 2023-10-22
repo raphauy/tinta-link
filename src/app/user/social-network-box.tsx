@@ -46,16 +46,16 @@ export default function SocialNetworkBox({ userId, socialNetwork, addSocialAccou
 
                 {
                     socialNetwork.icon === "BsTwitter" ?
-                        getXIcon("3em") :
+                        getXIcon("1.8em") :
                     socialNetwork.icon === "Wine" ?
                         <Wine className="w-8 h-8" color={socialNetwork.color}/> :
                         React.createElement(socialIcon, { size: "25", color: socialNetwork.color})
                 }
                 </div>
 
-                <label className="ml-2">{href}</label>
+                <label className="ml-2 text-xs sm:text-base">{href}</label>
                 <Input type="text" name="nick" value={nick} autoFocus className="pl-1 bg-white" onChange={(e) => setNick(e.target.value)}/>
-                <Button className="ml-1" disabled={nick === ""}>
+                <Button className="ml-1 p-2" disabled={nick === ""}>
                     {loading ? <LoadingSpinnerChico /> : "Agregar"}
                 </Button>
             </form>
