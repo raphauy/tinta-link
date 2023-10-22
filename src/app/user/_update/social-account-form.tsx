@@ -6,30 +6,36 @@ import * as z from "zod"
 
 import { LoadingSpinnerChico } from "@/components/loadingSpinner"
 import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { useEffect, useState } from "react"
+import { Switch } from "@/components/ui/switch"
 
 
 const formSchema = z.object({  
   title: z.string(),
   href: z.string(),
+  socialIcon: z.boolean(),
 })
 
 export type SocialAccountFormValues = z.infer<typeof formSchema>
 
-const defaultValues: Partial<SocialAccountFormValues> = {}
+const defaultValues: Partial<SocialAccountFormValues> = {
+  socialIcon: false
+}
 
 interface Props{
   id: string
   title: string
   href: string
+  socialIcon: boolean
+  socialIconPosible: boolean
   update: (userId: string, json: SocialAccountFormValues) => Promise<boolean>
   closeDialog: () => void
 }
 
-export function SocialAccountForm({ id, title, href, update, closeDialog }: Props) {
+export function SocialAccountForm({ id, title, href, socialIcon, socialIconPosible, update, closeDialog }: Props) {
   const form = useForm<SocialAccountFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues,
@@ -55,8 +61,9 @@ export function SocialAccountForm({ id, title, href, update, closeDialog }: Prop
   useEffect(() => {
     form.setValue("title", title)
     form.setValue("href", href)
+    form.setValue("socialIcon", socialIcon)
 
-  }, [form, title, href])
+  }, [form, title, href, socialIcon])
 
 
 
@@ -90,6 +97,32 @@ export function SocialAccountForm({ id, title, href, update, closeDialog }: Prop
             </FormItem>
           )}
         />
+
+        {socialIconPosible &&         
+        <FormField
+          control={form.control}
+          name="socialIcon"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+              <div className="space-y-0.5">
+                <FormLabel className="text-base">
+                  Ícono de red social
+                </FormLabel>
+                <FormDescription>
+                  Mostrar este link como un icono de red social.
+                </FormDescription>
+              </div>
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        }
+
       <div className="flex justify-end">
           <Button onClick={() => closeDialog()} type="button" variant={"secondary"} className="w-32">Cancelar</Button>
           <Button type="submit" className="w-32 ml-2" >{loading ? <LoadingSpinnerChico /> : <p>Guardar</p>}</Button>

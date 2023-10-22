@@ -12,6 +12,8 @@ export type DataSocialNetwork = {
     color: string
     hrefTemplate: string
     order: number
+    socialIcon: boolean
+    placeHolder: string
 }
       
 
@@ -31,6 +33,8 @@ export async function getData(socialnetwork: SocialNetwork): Promise<DataSocialN
         color: socialnetwork.color,
         hrefTemplate: socialnetwork.hrefTemplate,
         order: socialnetwork.order,
+        socialIcon: socialnetwork.socialIcon,
+        placeHolder: socialnetwork.placeHolder
     }
     return data
 }

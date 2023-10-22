@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { getSocialAccounts } from "@/services/socialAccountService copy";
+import { getSocialAccounts } from "@/services/socialAccountService";
 import { getUserByHandle } from "@/services/userService";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import SocialAccountBox from "../user/social-account-box";
+import SocialAccountBox from "./social-account-box";
+import SocialIconsBox from "./social-icons-box";
 
 interface Props {
     params: {
@@ -19,7 +20,8 @@ export default async function HandlePage({ params: { handle } }: Props) {
     const user= await getUserByHandle(handle)
     if (!user) redirect("/")
 
-    const socialAccounts= await getSocialAccounts(user.id)
+    const socialAccounts= await getSocialAccounts(user.id, false)
+    const socialIcons= await getSocialAccounts(user.id, true)
 
     return (
         <div className="mt-10 flex flex-col gap-4 items-center">            
@@ -37,6 +39,15 @@ export default async function HandlePage({ params: { handle } }: Props) {
                     socialAccounts.map((socialAccount) => (
                         <div key={socialAccount.id} className="flex items-center gap-2">
                             <SocialAccountBox title={socialAccount.title} href={socialAccount.href} icon={socialAccount.socialNetwork.icon} color={socialAccount.socialNetwork.color} />
+                        </div>
+                    ))                    
+                }
+            </div>
+            <div className="flex gap-2 text-gray-800">
+                {
+                    socialIcons.map((socialAccount) => (
+                        <div key={socialAccount.id} className="flex items-center gap-2">
+                            <SocialIconsBox title={socialAccount.title} href={socialAccount.href} icon={socialAccount.socialNetwork.icon} color={socialAccount.socialNetwork.color} />
                         </div>
                     ))                    
                 }

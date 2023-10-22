@@ -7,17 +7,20 @@ import { SocialAccountForm, SocialAccountFormValues } from "./social-account-for
 import { updateSocialAccountAction } from "../social-account-actions"
 import { Wine } from 'lucide-react'
 import { getReactIcon } from "@/lib/icons"
+import { is } from "date-fns/locale"
 
 interface Props{
   id: string
   title: string
   href: string
   icon: string
+  isSocialIcon: boolean
+  socialIconPosible: boolean
   trigger: React.ReactNode
   update: (userId: string, json: SocialAccountFormValues) => Promise<boolean>
 }
 
-export function SocialAccountDialog({ id, title, href, icon, trigger, update }: Props) {
+export function SocialAccountDialog({ id, title, href, icon, isSocialIcon, socialIconPosible, trigger, update }: Props) {
   const [open, setOpen] = useState(false);
 
   const socialIcon= getReactIcon(icon)
@@ -43,6 +46,8 @@ export function SocialAccountDialog({ id, title, href, icon, trigger, update }: 
           id={id} 
           title={title}
           href={href}
+          socialIcon={isSocialIcon}
+          socialIconPosible={socialIconPosible}
         />
       </DialogContent>
     </Dialog>

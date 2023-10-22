@@ -65,6 +65,7 @@ model SocialAccount {
   userId          String
   socialNetwork   SocialNetwork @relation(fields: [socialNetworkId], references: [id], onDelete: Cascade)
   socialNetworkId String
+  socialIcon    Boolean  @default(false)
 }
 
 model SocialNetwork {
@@ -76,5 +77,6 @@ model SocialNetwork {
   order         Int
   socialAccount SocialAccount[]
   socialIcon    Boolean  @default(false)
+  placeHolder   String  @default("@")
 }
 

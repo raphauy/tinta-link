@@ -6,12 +6,13 @@ import * as z from "zod"
 
 import { LoadingSpinnerChico } from "@/components/loadingSpinner"
 import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { SocialNetwork } from "@prisma/client"
 import { useEffect, useState } from "react"
 import { getDataSocialNetwork } from "./actions"
+import { Switch } from "@/components/ui/switch"
 
 const formSchema = z.object({  
   name: z.string({required_error: "Name required"}),
@@ -19,6 +20,8 @@ const formSchema = z.object({
   color: z.string({required_error: "Color required"}),
   hrefTemplate: z.string({required_error: "HrefTemplate required"}),
   order: z.string().refine((val) => !isNaN(Number(val)), { message: "(debe ser un número)" }).optional(),
+  socialIcon: z.boolean(),
+  placeHolder: z.string(),
 })
 
 export type SocialNetworkFormValues = z.infer<typeof formSchema>
@@ -68,6 +71,8 @@ export function SocialNetworkForm({ id, create, update, closeDialog }: Props) {
         form.setValue("color", data.color)
         form.setValue("hrefTemplate", data.hrefTemplate)        
         form.setValue("order", data.order.toString())
+        form.setValue("socialIcon", data.socialIcon)
+        form.setValue("placeHolder", data.placeHolder)
       })
     }  
   }, [form, id])
@@ -133,6 +138,21 @@ export function SocialNetworkForm({ id, create, update, closeDialog }: Props) {
 
         <FormField
           control={form.control}
+          name="placeHolder"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Placeholder</FormLabel>
+              <FormControl>
+                <Input placeholder="Placeholder" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+
+        <FormField
+          control={form.control}
           name="order"
           render={({ field }) => (
             <FormItem>
@@ -145,6 +165,28 @@ export function SocialNetworkForm({ id, create, update, closeDialog }: Props) {
           )}
         />
 
+        <FormField
+          control={form.control}
+          name="socialIcon"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+              <div className="space-y-0.5">
+                <FormLabel className="text-base">
+                  Social Icon Posible
+                </FormLabel>
+                <FormDescription>
+                  Posibilidad de hacerse ícono de red social
+                </FormDescription>
+              </div>
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
         <div className="flex justify-end">
           <Button onClick={() => closeDialog()} type="button" variant={"secondary"} className="w-32">Cancel</Button>
           <Button type="submit" className="w-32 ml-2" >{loading ? <LoadingSpinnerChico /> : <p>Save</p>}</Button>

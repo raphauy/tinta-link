@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/lib/auth";
-import { getSocialAccounts } from "@/services/socialAccountService copy";
+import { getSocialAccounts } from "@/services/socialAccountService";
 import { getSocialNetworkWebSite, getSocialNetworksNotSetted } from "@/services/socialNetworkService";
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -9,6 +9,7 @@ import SocialNetworkBox from "./social-network-box";
 import SortableAccounts from "./sortable-accounts";
 import { TitleForm } from "./title-form";
 import UserImageBox from "./user-image-box";
+import SortableIcons from "./sortable-icons";
 
 
 export default async function UserPage() {
@@ -27,9 +28,6 @@ export default async function UserPage() {
     if (indexOfSocialNetworkWebSite !== -1)
         socialNetworks.splice(indexOfSocialNetworkWebSite, 1)    
     
-
-    const socialAccounts= await getSocialAccounts(user.id)
-    const dataSocialAccounts= await getSocialAccountsAction(user.id)
 
     const socialNetworkWebSite= await getSocialNetworkWebSite()
 
@@ -54,6 +52,8 @@ export default async function UserPage() {
             </div>
 
             <SortableAccounts userId={user.id} interchangeOrders={interchangeOrdersAction}/>
+
+            <SortableIcons userId={user.id} interchangeOrders={interchangeOrdersAction}/>
 
             <div className="w-full">
                 {

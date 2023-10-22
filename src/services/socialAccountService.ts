@@ -39,11 +39,12 @@ export async function addSocialAccount(userId: string, socialNetworkId: string, 
   return created
 }
 
-export async function getSocialAccounts(userId: string) {
+export async function getSocialAccounts(userId: string, isSocialIcon: boolean) {
   
     const found = await prisma.socialAccount.findMany({
       where: {
         userId,
+        socialIcon: isSocialIcon
       },
       orderBy: {
         order: 'asc',
@@ -57,7 +58,7 @@ export async function getSocialAccounts(userId: string) {
 }
 
 // update social account funcion
-export async function updateSocialAccount(id: string, title: string, href: string) {
+export async function updateSocialAccount(id: string, title: string, href: string, socialIcon: boolean) {
   
   const updated= await prisma.socialAccount.update({
     where: {
@@ -66,6 +67,7 @@ export async function updateSocialAccount(id: string, title: string, href: strin
     data: {
       title,
       href,
+      socialIcon
     }
   })
 

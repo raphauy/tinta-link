@@ -20,7 +20,7 @@ interface Props {
     isSocialIcon: boolean
     socialIconPosible: boolean
 }
-export default function SocialAccountEditableBox({ id, title, href, icon, color, isSocialIcon, socialIconPosible }: Props) {
+export default function SocialIconEditableBox({ id, title, href, icon, color, isSocialIcon, socialIconPosible }: Props) {
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id })
 
     const style = {
@@ -35,21 +35,18 @@ export default function SocialAccountEditableBox({ id, title, href, icon, color,
     const deleteTrigger= (<Button variant="ghost" className='p-1'><Trash2 className="w-5 h-5" /></Button>)
   
     return (
-        <div className='flex items-center w-full mb-3'
+        <div className='flex flex-col items-center w-full mb-3'
         style={style}
         >
             <Link href={href} target="_blank" rel="noopener noreferrer"
-                className="flex items-center p-1 w-full rounded-md hover:scale-105 bg-slate-50 transition-all border shadow-md max-w-3xl">
+                className="flex items-center p-1 rounded-md hover:scale-105 bg-slate-50 transition-all border shadow-md max-w-3xl">
                 <div className="flex text-center w-full">
                     <div>
-                        {React.createElement(socialIcon, { className: `w-7 h-7`, color})}
-                    </div>
-                    <div className="flex justify-center items-center font-semibold w-full text-gray-700 -ml-10">
-                        {title}
+                        {React.createElement(socialIcon, { className: `w-6 h-6`})}
                     </div>
                 </div>
             </Link>
-            <div className='flex items-center ml-1'>
+            <div className='flex flex-col items-center ml-1'>
                 <SocialAccountDialog id={id} title={title} href={href} 
                     icon={icon} trigger={updateTrigger} 
                     update={updateSocialAccountAction}

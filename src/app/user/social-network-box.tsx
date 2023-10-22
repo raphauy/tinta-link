@@ -16,7 +16,7 @@ interface Props {
 
 export default function SocialNetworkBox({ userId, socialNetwork, autofocus, addSocialAccountAction }: Props) {
 
-    const [nick, setNick] = useState("")
+    const [nick, setNick] = useState(socialNetwork.placeHolder || "")
     const [loading, setLoading] = useState(false)
     const socialIcon= getReactIcon(socialNetwork.icon)
     const hrefTemplate= socialNetwork.hrefTemplate
@@ -47,7 +47,7 @@ export default function SocialNetworkBox({ userId, socialNetwork, autofocus, add
 
                 <label className="ml-2 text-xs sm:text-base">{href}</label>
                 <Input type="text" name="nick" value={nick} autoFocus={autofocus} className="pl-1 bg-white" onChange={(e) => setNick(e.target.value)}/>
-                <Button className="ml-1 p-2" disabled={nick === ""}>
+                <Button className="ml-1 p-2" disabled={nick === "" || nick === "@" || nick === "tusitio.com" || nick === "59899..." || nick === "tusitio.com/vinos"}>
                     {loading ? <LoadingSpinnerChico /> : "Agregar"}
                 </Button>
             </form>
