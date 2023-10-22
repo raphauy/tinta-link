@@ -23,6 +23,8 @@ export default async function HandlePage({ params: { handle } }: Props) {
     const socialAccounts= await getSocialAccounts(user.id, false)
     const socialIcons= await getSocialAccounts(user.id, true)
 
+    console.log(handle)    
+
     return (
         <div className="mt-10 flex flex-col gap-4 items-center">            
             {user.image ?                         
