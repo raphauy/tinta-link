@@ -43,7 +43,7 @@ export default async function HandlePage({ params: { handle } }: Props) {
                     ))                    
                 }
             </div>
-            <div className="flex gap-2 text-gray-800">
+            <div className="flex gap-2 text-gray-800 mt-2">
                 {
                     socialIcons.map((socialAccount) => (
                         <div key={socialAccount.id} className="flex items-center gap-2">

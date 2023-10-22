@@ -25,9 +25,7 @@ export function getReactIcon(icon: string) {
         // @ts-ignore
         socialIcon= RiReactIcons[icon]
     }
-
-    console.log("icon", icon, socialIcon);
-    
+  
 
     return socialIcon
     
