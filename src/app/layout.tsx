@@ -56,7 +56,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                 </div>
 
                 {
-                  (path.startsWith("/user") || path.startsWith("/")) &&
+                  (path.startsWith("/user") || path === "/") &&
                   <div className='flex justify-center font-bold mb-2 mt-12 items-center'>
                     {"Creado por "}
                     <Link href='https://tinta.wine' target='_blank'>
