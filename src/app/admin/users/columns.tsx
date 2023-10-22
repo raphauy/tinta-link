@@ -9,6 +9,7 @@ import { DeleteDialog } from "./(crud)/delete-dialog"
 import { format } from "date-fns"
 import { es } from "date-fns/locale"
 import Image from "next/image"
+import Link from "next/link"
 
 export const columns: ColumnDef<DataUser>[] = [
   {
@@ -22,7 +23,9 @@ export const columns: ColumnDef<DataUser>[] = [
       const data = row.original
       if (!data.imagen) return <div></div>
       return (
-        <Image src={data.imagen} width={50} height={50} alt="User image" className="rounded-full"/>
+        <Link href={`/${data.handle}`}>
+          <Image src={data.imagen} width={50} height={50} alt="User image" className="rounded-full"/>
+        </Link>
       )
     },
   },
@@ -36,6 +39,16 @@ export const columns: ColumnDef<DataUser>[] = [
             <ArrowUpDown className="w-4 h-4 ml-1" />
           </Button>
     )
+    },
+    cell: ({ row }) => {
+      const data = row.original
+      return (
+        <Link href={`/${data.handle}`}>
+          <Button variant="link" className="">
+            {data.nombre}
+          </Button>
+        </Link>
+      )
     },
   },
   {

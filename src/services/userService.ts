@@ -6,7 +6,7 @@ export default async function getUsers() {
 
   const found = await prisma.user.findMany({
     orderBy: {
-      email: 'asc',
+      emailVerified: 'desc',
     },
   })
 
