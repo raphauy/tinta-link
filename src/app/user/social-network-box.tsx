@@ -41,14 +41,17 @@ export default function SocialNetworkBox({ userId, socialNetwork, addSocialAccou
     }
     return (
         <div className="mt-5 p-3 bg-slate-50 border rounded-md">
-            <form action={handleSubmit} className="flex items-center gap-1">        
+            <form action={handleSubmit} className="flex items-center gap-1">
+                <div>
+
                 {
                     socialNetwork.icon === "BsTwitter" ?
                         getXIcon("3em") :
                     socialNetwork.icon === "Wine" ?
-                        <Wine className="w-10 h-10" color={socialNetwork.color}/> :
-                        React.createElement(socialIcon, { size: "50", color: socialNetwork.color})
+                        <Wine className="w-8 h-8" color={socialNetwork.color}/> :
+                        React.createElement(socialIcon, { size: "25", color: socialNetwork.color})
                 }
+                </div>
 
                 <label className="ml-2">{href}</label>
                 <Input type="text" name="nick" value={nick} autoFocus className="pl-1 bg-white" onChange={(e) => setNick(e.target.value)}/>
