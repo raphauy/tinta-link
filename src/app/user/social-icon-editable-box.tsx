@@ -39,8 +39,8 @@ export default function SocialIconEditableBox({ id, title, href, icon, color, is
         style={style}
         >
             <Link href={href} target="_blank" rel="noopener noreferrer"
-                className="flex items-center p-1 rounded-md hover:scale-105 bg-slate-50 transition-all border shadow-md max-w-3xl">
-                <div className="flex text-center w-full">
+                className="flex items-center p-1 hover:scale-110 transition-all">
+                <div className="flex text-center w-full text-gray-800">
                     <div>
                         {React.createElement(socialIcon, { className: `w-6 h-6`})}
                     </div>
