@@ -55,9 +55,11 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                   <Toaster />
                 </div>
 
+                <div className='flex justify-center font-bold mb-2 mt-12 items-center'>
+
                 {
-                  (path.startsWith("/user") || path === "/") &&
-                  <div className='flex justify-center font-bold mb-2 mt-12 items-center'>
+                  (path.startsWith("/user") || path === "/") ?
+                  <>
                     {"Creado por "}
                     <Link href='https://tinta.wine' target='_blank'>
                       <Button className='p-1 font-bold text-base' variant="link">tinta.wine</Button>
@@ -66,8 +68,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                     <Link href='https://rapha.uy' target='_blank'>
                       <Button className='p-1 font-bold text-base' variant="link">rapha.uy</Button>
                     </Link>
-                  </div>
-                }
+                  </> :
+                  <Link href='https://tinta.wine' target='_blank'>
+                    <Button className='p-1 font-bold text-base' variant="link">tinta.wine</Button>
+                  </Link>
+              }
+                  </div> 
               </div>            
               <TailwindIndicator />
             </ThemeProvider>
