@@ -51,8 +51,13 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                 </div>
 
                 <div className='flex justify-center font-bold mb-2 items-center'>
+                  {"Creado por "}
                   <Link href='https://tinta.wine' target='_blank'>
                     <Button className='p-1 font-bold text-base' variant="link">tinta.wine</Button>
+                  </Link>
+                  {"- Desarrollado por"}
+                  <Link href='https://rapha.uy' target='_blank'>
+                    <Button className='p-1 font-bold text-base' variant="link">rapha.uy</Button>
                   </Link>
                 </div>
               </div>            
