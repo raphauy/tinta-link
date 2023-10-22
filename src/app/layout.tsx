@@ -12,8 +12,9 @@ import getSession from '@/lib/auth'
 import { fontSans } from '@/lib/fonts'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { headers } from 'next/headers'
 
-const inter = Inter({ subsets: ['latin'] })
+
 
 export const metadata: Metadata = {
   title: 'Tinta Link',
@@ -32,6 +33,10 @@ interface RootLayoutProps {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
+  const headersList = headers();
+  const url = headersList.get("x-url") || "";
+  const path= "/" + url.split("/")[3]
+
   const session= await getSession()
   return (    
     <>
@@ -50,16 +55,19 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                   <Toaster />
                 </div>
 
-                <div className='flex justify-center font-bold mb-2 mt-12 items-center'>
-                  {"Creado por "}
-                  <Link href='https://tinta.wine' target='_blank'>
-                    <Button className='p-1 font-bold text-base' variant="link">tinta.wine</Button>
-                  </Link>
-                  {"- Desarrollado por"}
-                  <Link href='https://rapha.uy' target='_blank'>
-                    <Button className='p-1 font-bold text-base' variant="link">rapha.uy</Button>
-                  </Link>
-                </div>
+                {
+                  (path.startsWith("/user") || path.startsWith("/")) &&
+                  <div className='flex justify-center font-bold mb-2 mt-12 items-center'>
+                    {"Creado por "}
+                    <Link href='https://tinta.wine' target='_blank'>
+                      <Button className='p-1 font-bold text-base' variant="link">tinta.wine</Button>
+                    </Link>
+                    {"- Desarrollado por"}
+                    <Link href='https://rapha.uy' target='_blank'>
+                      <Button className='p-1 font-bold text-base' variant="link">rapha.uy</Button>
+                    </Link>
+                  </div>
+                }
               </div>            
               <TailwindIndicator />
             </ThemeProvider>
