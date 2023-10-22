@@ -64,6 +64,18 @@ export const columns: ColumnDef<DataUser>[] = [
   },
   },
   {
+    accessorKey: "handle",
+    header: ({ column }) => {
+      return (
+        <Button variant="ghost" className="pl-0 dark:text-white"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          Handle
+          <ArrowUpDown className="w-4 h-4 ml-1" />
+        </Button>
+    )
+  },
+  },
+  {
     accessorKey: "rol",
     header: ({ column }) => {
       return (

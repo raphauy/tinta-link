@@ -20,7 +20,7 @@ export default async function WinesPage() {
       </div>
 
       <div className="container p-3 py-4 mx-auto border rounded-md text-muted-foreground dark:text-white">
-        <DataTable columns={columns} data={users} pageSize={50}/>      
+        <DataTable columns={columns} data={users} pageSize={50} columnsOff={["rol"]}/>      
       </div>
     </div>
 )
