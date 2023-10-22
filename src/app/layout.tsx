@@ -61,11 +61,11 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                 {
                   (path.startsWith("/user") || path === "/") ?
                   <>
-                    {"Creado por "}
+                    <p className='whitespace-nowrap'>{"Creado por "}</p>
                     <Link href='https://tinta.wine' target='_blank'>
                       <Button className='p-1 font-bold text-base' variant="link">tinta.wine</Button>
                     </Link>
-                    {"- Desarrollado por"}
+                    <p className='whitespace-nowrap'>{" - Desarrollado por"}</p>                    
                     <Link href='https://rapha.uy' target='_blank'>
                       <Button className='p-1 font-bold text-base' variant="link">rapha.uy</Button>
                     </Link>

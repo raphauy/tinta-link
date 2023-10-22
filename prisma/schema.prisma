@@ -75,5 +75,6 @@ model SocialNetwork {
   hrefTemplate  String
   order         Int
   socialAccount SocialAccount[]
+  socialIcon    Boolean  @default(false)
 }
 
