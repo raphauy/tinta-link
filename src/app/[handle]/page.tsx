@@ -36,6 +36,10 @@ export default async function HandlePage({ params: { handle } }: Props) {
                 <p>{user.name ? user.name : user.handle}</p>
             </div>
 
+            <div className="text-lg flex items-center">
+                <p>{user.bio}</p>
+            </div>
+
             <div className="w-full min-w-[300px] sm:min-w-[400px] lg:min-w-[600px] mt-10">
                 {
                     socialAccounts.map((socialAccount) => (

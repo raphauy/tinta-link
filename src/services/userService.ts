@@ -80,6 +80,20 @@ export async function setUserName(id: string, name: string) {
   return updated
 }
 
+export async function setUserBio(id: string, bio: string) {
+    
+  const updated= await prisma.user.update({
+    where: {
+      id
+    },
+    data: {
+      bio
+    },
+  })
+
+  return updated
+}
+
 export async function deleteUser(id: string) {
   
   const deleted= await prisma.user.delete({

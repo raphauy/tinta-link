@@ -9,6 +9,7 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string
+      bio: string
       role: string
       handle: string
     } & DefaultSession["user"]
@@ -26,6 +27,8 @@ export const authOptions: NextAuthOptions = {
         role: user.role,
         //@ts-ignore
         handle: user.handle,
+        //@ts-ignore
+        bio: user.bio,
       },
     }),
   },

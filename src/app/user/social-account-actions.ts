@@ -1,6 +1,6 @@
 "use server"
 
-import { setUserName } from "@/services/userService"
+import { setUserBio, setUserName } from "@/services/userService"
 import { revalidatePath } from "next/cache"
 import { SocialAccountFormValues } from "./_update/social-account-form"
 import { addSocialAccount, deleteSocialAccount, getSocialAccounts, interchangeOrders, updateSocialAccount } from "@/services/socialAccountService"
@@ -58,6 +58,16 @@ export async function addSocialAccountAction(data: FormData): Promise<boolean> {
 
 export async function setUserNameAction(id: string, newTitle: string): Promise<boolean> {  
     const updated= await setUserName(id, newTitle)
+
+    if (!updated) return false
+
+    revalidatePath(`/user`)
+    
+    return true
+}
+
+export async function setUserBioAction(id: string, newBio: string): Promise<boolean> {  
+    const updated= await setUserBio(id, newBio)
 
     if (!updated) return false
 

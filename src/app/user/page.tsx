@@ -4,12 +4,13 @@ import { getSocialNetworkWebSite, getSocialNetworksNotSetted } from "@/services/
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import LinkBox from "./link-box";
-import { addSocialAccountAction, getSocialAccountsAction, interchangeOrdersAction, setUserNameAction } from "./social-account-actions";
+import { addSocialAccountAction, getSocialAccountsAction, interchangeOrdersAction, setUserBioAction, setUserNameAction } from "./social-account-actions";
 import SocialNetworkBox from "./social-network-box";
 import SortableAccounts from "./sortable-accounts";
 import { TitleForm } from "./title-form";
 import UserImageBox from "./user-image-box";
 import SortableIcons from "./sortable-icons";
+import { BioForm } from "./bio-form";
 
 
 export default async function UserPage() {
@@ -48,6 +49,14 @@ export default async function UserPage() {
                     id={user.id} 
                     initialData={ { title: user.name ? user.name : "Tu nombre" }} 
                     update={setUserNameAction}
+                />
+            </div>
+
+            <div className="text-2xl flex items-center ml-5">
+                <BioForm
+                    id={user.id} 
+                    initialData={ { bio: user.bio ? user.bio : "Sin Bio" }} 
+                    update={setUserBioAction}
                 />
             </div>
 
