@@ -74,13 +74,16 @@ export function BioForm({ id, initialData, update }: Props) {
                   <LoadingSpinnerChico />
                 </div>
               ) : (
-                <Button 
-                  onClick={toggleEdit} 
-                  variant="ghost" 
-                  type="button" 
-                  className="text-lg space-x-2">
-                  <><p>{initialData.bio}</p> <Pencil className="w-5 h-5" /></>                      
-                </Button>
+                <div className="flex ml-5">
+                  <p className="text-lg space-x-2 max-w-md text-center">{initialData.bio}</p>
+                  <Button 
+                    onClick={toggleEdit} 
+                    variant="ghost" 
+                    type="button" 
+                    >
+                      <Pencil className="w-5 h-5" />
+                  </Button>
+                </div>
               )
             }
     </div>

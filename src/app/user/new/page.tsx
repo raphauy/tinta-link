@@ -1,9 +1,9 @@
 
-import { toast } from "@/components/ui/use-toast";
 import { getCurrentUser } from "@/lib/auth";
 import { isHandleAvailable, setHandleOnDB } from "@/services/userService";
-import HandleForm from "./handle-form";
 import { redirect } from "next/navigation";
+import HandleForm from "./handle-form";
+import { revalidatePath } from "next/cache";
 
 
 
@@ -11,36 +11,38 @@ export default async function NewUserPage() {
   const user= await getCurrentUser()
   if (!user) return <div>User not found</div>
 
-  async function setHandleAction(data: FormData) {
+  console.log("handle: " + user.handle)
+  if (user.handle) {
+    redirect("/user")
+  }
+
+  async function setHandleAction(data: FormData): Promise<string> {
     "use server"
     const handle = data.get("handle") as string
     console.log(handle)
 
     if (!handle) {
-      toast({ title: "No se pudo crear el identificador"})
-      return
+      return "No se pudo crear el identificador"
     }
 
     if (!user) {
-      toast({ title: "No se pudo crear el identificador"})
-      return
+      return "No se pudo crear el identificador"
     }
 
     const available= await isHandleAvailable(handle)
     if (!available) {
-      toast({ title: "Identificador no disponible"})
-      return
+      return "El identificador no está disponible"
     }
 
     const updated= await setHandleOnDB(user.id, handle)
 
     if (!updated) {
-      toast({ title: "No se pudo crear el identificador"})
-      return
+      return "No se pudo crear el identificador"
     } else {
-      toast({ title: "Identificador creado"})
-      redirect("/user")
-    }    
+      revalidatePath("/user")
+      return "Identificador creado"
+    }
+    
   }
 
   async function isHandleAvailableAction(handle: string) {

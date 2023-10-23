@@ -36,7 +36,7 @@ export default async function HandlePage({ params: { handle } }: Props) {
                 <p>{user.name ? user.name : user.handle}</p>
             </div>
 
-            <div className="text-lg flex items-center">
+            <div className="text-lg flex items-center max-w-md text-center">
                 <p>{user.bio}</p>
             </div>
 

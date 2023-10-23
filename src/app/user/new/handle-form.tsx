@@ -3,12 +3,13 @@
 import { LoadingSpinnerChico } from "@/components/loadingSpinner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Ban, Check, CheckCircle2 } from "lucide-react";
+import { toast } from "@/components/ui/use-toast";
+import { Ban, CheckCircle2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface Props {
   userId: string
-  setHandleAction: (data: FormData) => void
+  setHandleAction: (data: FormData) => Promise<string>
   isHandleAvailableAction: (handle: string) => Promise<boolean>
 }
 
@@ -33,16 +34,17 @@ export default function HandleForm({ userId, setHandleAction, isHandleAvailableA
   
   function handleSubmit() {
     setLoading(true)
+    toast({ title: "Aguarde..."})
     
     const formData= new FormData()
     formData.append("handle", handle)
     async function setHandle() {
-        await new Promise(resolve => setTimeout(resolve, 100))
-        setHandleAction(formData)
-        setLoading(false)
+      const res= await setHandleAction(formData)
+      toast({ title: res})
+      setLoading(false)
     }
-    setHandle()
-}
+    setHandle()    
+  }
 
 
   return (
