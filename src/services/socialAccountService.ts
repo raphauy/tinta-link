@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/db";
 import { getSocialNetwork } from "./socialNetworkService";
 import { setImageFromInstagram } from "./userService";
+import { DataSocialAccount } from "@/app/user/social-account-actions";
 
 
 
@@ -59,7 +60,13 @@ export async function getSocialAccounts(userId: string, isSocialIcon: boolean) {
 
 // update social account funcion
 export async function updateSocialAccount(id: string, title: string, href: string, socialIcon: boolean) {
-  
+  const oldValue= await prisma.socialAccount.findUnique({
+    where: {
+      id
+    }
+  })
+  if (!oldValue) throw new Error('Social account not found')
+
   const updated= await prisma.socialAccount.update({
     where: {
       id
@@ -70,6 +77,18 @@ export async function updateSocialAccount(id: string, title: string, href: strin
       socialIcon
     }
   })
+
+  // if socialIcon value changed set order to 100
+  if (oldValue.socialIcon !== socialIcon) {
+    await prisma.socialAccount.update({
+      where: {
+        id
+      },
+      data: {
+        order: 100
+      }
+    })
+  }
 
   return updated
 }
@@ -121,4 +140,19 @@ export async function interchangeOrders(id1: string, id2: string) {
   })
 
   return true
+}
+
+export async function setNewOrder(accounts: DataSocialAccount[]) {
+  const promises= accounts.map((account,index) => {
+    return prisma.socialAccount.update({
+      where: {
+        id: account.id
+      },
+      data: {
+        order: index
+      }
+    })
+  })
+
+  await Promise.all(promises)
 }

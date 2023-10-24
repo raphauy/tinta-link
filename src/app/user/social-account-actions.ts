@@ -3,9 +3,8 @@
 import { setUserBio, setUserName } from "@/services/userService"
 import { revalidatePath } from "next/cache"
 import { SocialAccountFormValues } from "./_update/social-account-form"
-import { addSocialAccount, deleteSocialAccount, getSocialAccounts, interchangeOrders, updateSocialAccount } from "@/services/socialAccountService"
+import { addSocialAccount, deleteSocialAccount, getSocialAccounts, interchangeOrders, setNewOrder, updateSocialAccount } from "@/services/socialAccountService"
 import { redirect } from "next/navigation"
-import { tr } from "date-fns/locale"
 
 
 export type DataSocialAccount= {
@@ -106,4 +105,10 @@ export async function interchangeOrdersAction(id1: string, id2: string): Promise
     revalidatePath(`/user`)
     
     return true
+}
+
+export async function setNewOrderAction(accounts: DataSocialAccount[]) {
+    await setNewOrder(accounts)
+
+    revalidatePath(`/user`)    
 }

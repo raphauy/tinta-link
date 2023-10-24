@@ -3,7 +3,7 @@
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useEffect, useState } from "react";
-import { DataSocialAccount, getSocialAccountsAction } from "./social-account-actions";
+import { DataSocialAccount, getSocialAccountsAction, setNewOrderAction } from "./social-account-actions";
 import SocialAccountEditableBox from "./social-account-editable-box";
 import { usePathname, useSearchParams } from "next/navigation";
 
@@ -34,7 +34,7 @@ export default function SortableAccounts({ userId, interchangeOrders}: Props) {
             const newIndex= orderedAccounts.findIndex((socialAccount) => socialAccount.id === over.id)
             const neworderedAccounts= arrayMove(orderedAccounts, oldIndex, newIndex)
             setOrderedAccounts(neworderedAccounts)
-            interchangeOrders(active.id, over.id)            
+            setNewOrderAction(neworderedAccounts)
         }        
     }
 

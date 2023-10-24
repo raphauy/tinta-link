@@ -114,8 +114,8 @@ export const columns: ColumnDef<DataUser>[] = [
 
       const editTrigger= (<Edit size={30} className="pr-2 hover:cursor-pointer text-sky-400"/>)
       const eliminateTrigger= (<Trash2 className="text-red-400 hover:cursor-pointer"/>)
-      const title= "Eliminar Cliente"
-      const description= `Desea eliminar el cliente ${data.nombre}?`
+      const title= "Eliminar Usuario"
+      const description= `Desea eliminar el usuario ${data.nombre ? data.nombre : "(sin nombre)"}?`
  
       return (
         <div className="flex items-center justify-end gap-2">
