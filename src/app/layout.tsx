@@ -1,19 +1,19 @@
-import { Toaster } from '@/components/ui/toaster'
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { ThemeProvider } from '@/components/shadcn/theme-provider'
 import SessionProvider from '@/components/SessionProvider'
 import Header from '@/components/header/header'
 import Menu from '@/components/header/menu'
 import { TailwindIndicator } from '@/components/shadcn/tailwind-indicator'
-import { cn } from '@/lib/utils'
+import { ThemeProvider } from '@/components/shadcn/theme-provider'
+import { Button } from '@/components/ui/button'
+import { Toaster } from '@/components/ui/toaster'
 import getSession from '@/lib/auth'
 import { fontSans } from '@/lib/fonts'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import type { Metadata } from 'next'
 import { headers } from 'next/headers'
 import Image from 'next/image'
+import Link from 'next/link'
+import './globals.css'
+import { Analytics } from '@vercel/analytics/react';
 
 
 
@@ -53,6 +53,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
                 <div className="flex flex-col items-center flex-1">
                   {children}
+                  <Analytics />
                   <Toaster />
                 </div>
 
