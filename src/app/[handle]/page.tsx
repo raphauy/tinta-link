@@ -34,12 +34,14 @@ export default async function HandlePage({ params: { handle } }: Props) {
             }
 
             <div className="text-2xl flex items-center font-bold">
-                <p>{user.name ? user.name : user.handle}</p>
+                <h1>{user.name ? user.name : user.handle}</h1>
             </div>
 
-            <div className="text-lg flex items-center max-w-md text-center">
-                <p>{user.bio}</p>
-            </div>
+            {user.bio &&
+                <div className="text-lg flex items-center max-w-md text-center">
+                    <h2>{user.bio}</h2>
+                </div>
+            }
 
             <div className="w-full min-w-[300px] sm:min-w-[400px] lg:min-w-[600px] mt-10">
                 {

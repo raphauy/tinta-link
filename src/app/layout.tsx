@@ -29,7 +29,14 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: "/favicon.ico",
-  },  
+  },
+  robots: {
+    index: true,
+    follow: true,    
+  },
+  authors: {name: "Raphael Carvalho", url: "https://rapha.uy"},
+  publisher: "Tinta Wine",
+  keywords: "tinta, wine, vino, link, enlaces, links, marketing, agencia, bodega, bodegas, vinos, vino, bodegas, bodega, vinos, vino, marketing, agencia, enlaces, li"
 }
 
 interface RootLayoutProps {  
