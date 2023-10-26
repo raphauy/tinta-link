@@ -1,5 +1,13 @@
 import { getCurrentUser } from "@/lib/auth";
 import NotAlowedPage from "../(auth)/unauthorized/page";
+import { Metadata } from "next";
+
+let userName = ""
+
+export const metadata: Metadata = {
+  title: `Tinta Link de ${userName}`,
+  description: 'Tinta Link by tinta.wine',
+}
 
 interface Props {
   children: React.ReactNode;
@@ -11,6 +19,8 @@ export default async function AdminLayout({ children }: Props) {
   if (!currentUser) {
     return <NotAlowedPage message="You must be logged in." />
   }
+
+  userName = currentUser.handle
 
   if (currentUser?.role !== "admin" && currentUser?.role !== "user") {
     return <NotAlowedPage message="Only user and admin role allowed." />

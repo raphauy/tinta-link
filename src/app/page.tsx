@@ -14,7 +14,8 @@ export default async function Home() {
 
   return (
     <div className='flex flex-col items-center gap-10 mt-20'>
-      <p className='text-xl font-bold'>Reúne y comparte fácilmente todos tus enlaces vinculados al vino.</p>      
+      <h1 className='text-2xl font-bold'>Tinta Link</h1>
+      <h2 className='text-xl font-bold'>Reúne y comparte fácilmente todos tus enlaces vinculados al vino.</h2>
 
       <Link href="/login">
         <Button className="mt-20">Crea tu Tinta Link</Button>

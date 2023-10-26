@@ -18,8 +18,11 @@ import { Analytics } from '@vercel/analytics/react';
 
 
 export const metadata: Metadata = {
-  title: 'Tinta Link',
-  description: 'Tinta Link by tinta.wine',
+  title: 'Tinta Link, un servicio de tinta.wine',
+  description: `
+  Es un servicio gratuito de tinta.wine, la agencia de marketing enfocada en el mundo del vino.
+  Reúne y comparte fácilmente todos tus enlaces vinculados al vino.
+  `,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },

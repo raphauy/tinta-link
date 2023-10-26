@@ -6,6 +6,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import SocialAccountBox from "./social-account-box";
 import SocialIconsBox from "./social-icons-box";
+import { Metadata } from "next";
 
 interface Props {
     params: {
@@ -65,3 +66,10 @@ export default async function HandlePage({ params: { handle } }: Props) {
         </div>
     )
 }
+
+export async function generateMetadata({ params: { handle } }: Props): Promise<Metadata> {
+   
+    return {
+        title: `Enlaces de ${handle} en Tinta Link`,
+    }
+  }
