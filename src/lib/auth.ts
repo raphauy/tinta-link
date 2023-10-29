@@ -3,6 +3,7 @@ import { type GetServerSidePropsContext } from "next"
 import { getServerSession, type DefaultSession, type NextAuthOptions } from "next-auth"
 import EmailProvider from "next-auth/providers/email"
 import { prisma } from "./db"
+import GoogleProvider from "next-auth/providers/google"
 
 
 declare module "next-auth" {
@@ -52,6 +53,11 @@ export const authOptions: NextAuthOptions = {
         }
       : {}),
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || ""
+    }),
+
   ],
   pages: {
     signIn: "/login",

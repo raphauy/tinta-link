@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   authors: {name: "Raphael Carvalho", url: "https://rapha.uy"},
   publisher: "Tinta Wine",
-  keywords: "tinta, wine, vino, link, enlaces, links, marketing, agencia, bodega, bodegas, vinos, vino, bodegas, bodega, vinos, vino, marketing, agencia, enlaces, li"
+  keywords: "tinta, wine, vino, link, enlaces, links, marketing, agencia, bodega, bodegas, vinos, vino"
 }
 
 interface RootLayoutProps {  
@@ -67,25 +67,19 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                   <Toaster />
                 </div>
 
-                <div className='flex justify-center font-bold mb-2 mt-12 items-center'>
+                <div className='flex justify-between font-bold mt-12 items-center'>
+                  <Link href='/legal/terms'>
+                    <Button variant="link" className='text-muted-foreground'>Términos y condiciones</Button>
+                  </Link>
 
-                {
-                  (path.startsWith("/user") || path === "/") ?
-                  <>
-                    <p className='whitespace-nowrap'>{"Creado por "}</p>
-                    <Link href='https://tinta.wine' target='_blank'>
-                      <Button className='p-1 font-bold text-base' variant="link">tinta.wine</Button>
-                    </Link>
-                    <p className='whitespace-nowrap'>{" - Desarrollado por"}</p>                    
-                    <Link href='https://rapha.uy' target='_blank'>
-                      <Button className='p-1 font-bold text-base' variant="link">rapha.uy</Button>
-                    </Link>
-                  </> :
-                    <Link href="https://tinta.wine" className='mb-8'>
-                      <Image src="/logo_tinta.png" width={80} height={80} alt="Tinta logo" className="pb-[3px]" />
-                    </Link>
-                
-              }
+                  <Link href="https://tinta.wine" className=''>
+                    <Image src="/logo_tinta.png" width={80} height={80} alt="Tinta logo" className="pb-[3px]" />
+                  </Link>
+
+                  <Link href='/legal/privacy'>
+                    <Button variant="link" className='text-muted-foreground'>Política de privacidad</Button>
+                  </Link>
+
                   </div> 
               </div>            
               <TailwindIndicator />

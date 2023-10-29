@@ -15,6 +15,11 @@ const nextConfig = {
         hostname: "*.fbcdn.net",
         port: "",
       },      
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+      },      
     ],
   },    
 

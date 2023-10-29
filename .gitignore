@@ -1,6 +1,7 @@
 # Agregado por RC
 .env
 
+
 # dependencies
 /node_modules
 /.pnp

@@ -1,12 +1,14 @@
 import { prisma } from "@/lib/db";
 import { getSocialNetwork } from "./socialNetworkService";
-import { setImageFromInstagram } from "./userService";
+import { getUser, setImageFromInstagram } from "./userService";
 import { DataSocialAccount } from "@/app/user/social-account-actions";
 
 
 
 export async function addSocialAccount(userId: string, socialNetworkId: string, nick: string) {
   
+  const user= await getUser(userId)
+  if (!user) throw new Error('User not found')
 
   const socialNetwork= await getSocialNetwork(socialNetworkId)
   if (!socialNetwork) throw new Error('Social network not found')
@@ -33,8 +35,11 @@ export async function addSocialAccount(userId: string, socialNetworkId: string, 
     },
   })
 
-  if (socialNetwork.name === 'Instagram') {
-    await setImageFromInstagram(userId, nick)
+  const userImage= user.image
+  if (!userImage) {
+    if (socialNetwork.name === 'Instagram') {
+      await setImageFromInstagram(userId, nick)
+    }  
   }
 
   return created
