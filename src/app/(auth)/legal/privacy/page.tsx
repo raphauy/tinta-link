@@ -45,7 +45,7 @@ export default function PrivacyPage() {
       <p>Utilizamos cookies para mejorar tu experiencia de usuario y recopilar estadísticas que nos ayuden a mejorar nuestro servicio.</p>
 
       <h2 className="text-xl font-bold mb-2 mt-8">Contacto</h2>
-      <p>Si tienes alguna duda sobre esta Política de Privacidad, puedes contactarte con nosotros a través de <a href="mailto:hola@tinta.wine" className="font-bold">trafficker@tinta.wine</a>.</p>
+      <p>Si tienes alguna duda sobre esta Política de Privacidad, puedes contactarte con nosotros a través de <a href="mailto:hola@tinta.wine" className="font-bold">hola@tinta.wine</a>.</p>
         
 
 

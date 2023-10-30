@@ -34,7 +34,7 @@ export default function LegalPage() {
       <p>Tinta se reserva el derecho de suspender o cancelar cuentas que violen estos Términos y Condiciones.</p>
 
       <h2 className="text-xl font-bold mb-2 mt-8">Contacto</h2>
-      <p>Si tienes alguna duda sobre estos Términos y Condiciones, puedes contactarte con nosotros a través de <a href="mailto:hola@tinta.wine" className="font-bold">trafficker@tinta.wine</a>.</p>
+      <p>Si tienes alguna duda sobre estos Términos y Condiciones, puedes contactarte con nosotros a través de <a href="mailto:hola@tinta.wine" className="font-bold">hola@tinta.wine</a>.</p>
     </div>
   )
 }
