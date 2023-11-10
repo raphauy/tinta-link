@@ -8,12 +8,11 @@ import { Toaster } from '@/components/ui/toaster'
 import getSession from '@/lib/auth'
 import { fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
+import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
-import { headers } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 import './globals.css'
-import { Analytics } from '@vercel/analytics/react';
 
 
 
@@ -44,9 +43,6 @@ interface RootLayoutProps {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const headersList = headers();
-  const url = headersList.get("x-url") || "";
-  const path= "/" + url.split("/")[3]
 
   const session= await getSession()
   return (    
