@@ -1,6 +1,5 @@
 import { SocialNetworkFormValues } from "@/app/admin/socialnetworks/(crud)/social-form";
 import { prisma } from "@/lib/db";
-import { getImageUrlFromAPI, setImageFromInstagram } from "./userService";
 
 export default async function getSocialNetworks() {
 
