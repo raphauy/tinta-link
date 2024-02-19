@@ -24,7 +24,9 @@ export const columns: ColumnDef<DataUser>[] = [
       if (!data.imagen) return <div></div>
       return (
         <Link href={`/${data.handle}`} target="_blank">
-          <Image src={data.imagen} width={50} height={50} alt="User image" className="rounded-full"/>
+          <div className="w-16 h-16 overflow-hidden flex items-center rounded-full">
+            <Image className="w-16" src={data.imagen} width={116} height={35} alt="User image" /> 
+          </div> 
         </Link>
       )
     },

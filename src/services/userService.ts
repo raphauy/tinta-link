@@ -43,6 +43,7 @@ export async function createUser(data: UserFormValues) {
       name: data.nombre,
       email: data.email,
       role: data.rol,
+      image: "https://utfs.io/f/ce7e6954-94ef-4c36-a4b5-5a742b633df9-h5faa7.png"
     },
   })
 
@@ -60,6 +61,7 @@ export async function editUser(id: string, data: UserFormValues) {
       name: data.nombre,
       email: data.email,
       role: data.rol,
+      image: data.imagen
     },
   })
 
@@ -94,6 +96,20 @@ export async function setUserBio(id: string, bio: string) {
   return updated
 }
 
+export async function setUserImage(id: string, image: string) {
+    
+    const updated= await prisma.user.update({
+      where: {
+        id
+      },
+      data: {
+        image
+      },
+    })
+  
+    return updated
+}
+
 export async function deleteUser(id: string) {
   
   const deleted= await prisma.user.delete({
@@ -112,7 +128,8 @@ export async function setHandleOnDB(id: string, handle: string) {
       id
     },
     data: {
-      handle
+      handle,
+      image: "https://utfs.io/f/ce7e6954-94ef-4c36-a4b5-5a742b633df9-h5faa7.png"
     },
   })
 

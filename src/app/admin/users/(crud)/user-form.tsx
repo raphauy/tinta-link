@@ -23,6 +23,7 @@ const formSchema = z.object({
   nombre: z.string().optional(),
   email: z.string().email(),    
   rol: z.string({required_error: "Role is required."}),
+  imagen: z.string().optional(),
 })
 
 export type UserFormValues = z.infer<typeof formSchema>
@@ -72,6 +73,7 @@ export function UserForm({ id, create, update, closeDialog }: Props) {
         data.nombre && form.setValue("nombre", data.nombre)
         form.setValue("email", data.email)
         form.setValue("rol", data.rol)
+        data.imagen && form.setValue("imagen", data.imagen)
       })
     }  
   }, [form, id])
@@ -136,6 +138,21 @@ export function UserForm({ id, create, update, closeDialog }: Props) {
             </FormItem>
           )}
         />
+
+        <FormField
+          control={form.control}
+          name="imagen"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>URL Imagen</FormLabel>
+              <FormControl>
+                <Input placeholder="URL de la imagen" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
       <div className="flex justify-end">
           <Button onClick={() => closeDialog()} type="button" variant={"secondary"} className="w-32">Cancelar</Button>
           <Button type="submit" className="w-32 ml-2" >{loading ? <LoadingSpinnerChico /> : <p>Guardar</p>}</Button>

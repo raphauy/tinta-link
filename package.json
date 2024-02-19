@@ -29,6 +29,7 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-toast": "^1.1.5",
     "@tanstack/react-table": "^8.10.3",
+    "@uploadthing/react": "^6.2.4",
     "@vercel/analytics": "^1.1.1",
     "axios": "^1.5.1",
     "class-variance-authority": "^0.7.0",
@@ -49,6 +50,7 @@
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
     "tsx": "^3.13.0",
+    "uploadthing": "^6.4.1",
     "zod": "^3.22.2"
   },
   "devDependencies": {

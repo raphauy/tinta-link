@@ -1,16 +1,15 @@
 import { getCurrentUser } from "@/lib/auth";
-import { getSocialAccounts } from "@/services/socialAccountService";
 import { getSocialNetworkWebSite, getSocialNetworksNotSetted } from "@/services/socialNetworkService";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { BioForm } from "./bio-form";
 import LinkBox from "./link-box";
-import { addSocialAccountAction, getSocialAccountsAction, interchangeOrdersAction, setUserBioAction, setUserNameAction } from "./social-account-actions";
+import { addSocialAccountAction, interchangeOrdersAction, setUserBioAction, setUserNameAction } from "./social-account-actions";
 import SocialNetworkBox from "./social-network-box";
 import SortableAccounts from "./sortable-accounts";
-import { TitleForm } from "./title-form";
-import UserImageBox from "./user-image-box";
 import SortableIcons from "./sortable-icons";
-import { BioForm } from "./bio-form";
+import { TitleForm } from "./title-form";
+import UploadPicker from "./upload-picker";
 
 
 export default async function UserPage() {
@@ -39,10 +38,16 @@ export default async function UserPage() {
             <div className="mb-10">
                 <LinkBox href={href} />
             </div>
-            {user.image ?
-                    <Image className="rounded-full w-20" src={user.image} width={116} height={35} alt="User image" /> : 
+            <div className="flex items-center ml-5 gap-8 justify-center">
+                {user.image ?
+                    <div className="ml-14 w-20 h-20 overflow-hidden flex items-center rounded-full">
+                        <Image className="w-20" src={user?.image} width={116} height={35} alt="User image" /> 
+                    </div> 
+                    :                
                     <p className="font-bold cursor-pointer hover:opacity-80 bg-gray-400 rounded-full text-white w-16 h-16 flex justify-center items-center text-4xl">{handle.substring(0,1).toUpperCase()}</p>
                 }
+                <UploadPicker />
+            </div>
 
             <div className="text-2xl flex items-center ml-5">
                 <TitleForm 

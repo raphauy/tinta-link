@@ -28,8 +28,11 @@ export default async function HandlePage({ params: { handle } }: Props) {
 
     return (
         <div className="mt-10 flex flex-col gap-4 items-center">            
-            {user.image ?                         
-                <Image className="rounded-full w-20" src={user?.image} width={116} height={35} alt="User image" /> : 
+            {user.image ?
+                <div className="w-20 h-20 overflow-hidden flex items-center rounded-full">
+                    <Image className="w-20" src={user?.image} width={116} height={35} alt="User image" /> 
+                </div> 
+                :                
                 <p className="font-bold cursor-pointer hover:opacity-80 bg-gray-400 rounded-full text-white w-16 h-16 flex justify-center items-center text-4xl">{handle.substring(0,1).toUpperCase()}</p>
             }
 
